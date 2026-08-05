@@ -26,7 +26,7 @@ Orchestration (LCEL): The retrieved context, conversation history, and user quer
 
 Clone the repository:
 
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git clone https://github.com/ankurrajpat/doc-mind.git
 cd YOUR_REPO_NAME
 
 
