@@ -1,0 +1,13 @@
+# App
+gradio>=4.0
+langchain>=0.2
+langchain-community>=0.2
+langchain-text-splitters>=0.2
+langchain-huggingface>=0.0.3
+langchain-ollama>=0.1
+faiss-cpu>=1.7
+pypdf>=4.0
+sentence-transformers>=2.7
+
+# Eval harness only (eval_rag.py make-data)
+reportlab>=4.0
