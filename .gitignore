@@ -4,9 +4,11 @@ env/
 __pycache__/
 *.pyc
 
-# Do not upload personal PDFs or local vector databases
+# Do not upload personal PDFs, local vector databases, or generated eval PDFs
 *.pdf
+!DocMind_Report.pdf
 faiss_index/
+eval_data/*.pdf
 
 # OS generated files
 .DS_Store
