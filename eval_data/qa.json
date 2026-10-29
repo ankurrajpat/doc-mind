@@ -1,0 +1,194 @@
+[
+  {
+    "question": "According to the manual, what is the pressure relief valve rated at in the Hydraulic System?",
+    "answer": "3825 psi",
+    "section": "Hydraulic System",
+    "component": "pressure relief valve",
+    "page": 1,
+    "spec_sentence": "The pressure relief valve is rated at 3825 psi."
+  },
+  {
+    "question": "How often must the coolant pump in the Hydraulic System be inspected?",
+    "answer": "every 520 flight hours",
+    "section": "Hydraulic System",
+    "component": "coolant pump",
+    "page": 2,
+    "spec_sentence": "The coolant pump requires inspection every 520 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the coolant pump rated at in the Cooling System?",
+    "answer": "2300 psi",
+    "section": "Cooling System",
+    "component": "coolant pump",
+    "page": 6,
+    "spec_sentence": "The coolant pump is rated at 2300 psi."
+  },
+  {
+    "question": "How often must the check valve in the Cooling System be inspected?",
+    "answer": "every 180 flight hours",
+    "section": "Cooling System",
+    "component": "check valve",
+    "page": 7,
+    "spec_sentence": "The check valve requires inspection every 180 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the check valve rated at in the Avionics Bay?",
+    "answer": "2650 psi",
+    "section": "Avionics Bay",
+    "component": "check valve",
+    "page": 11,
+    "spec_sentence": "The check valve is rated at 2650 psi."
+  },
+  {
+    "question": "How often must the filter assembly in the Avionics Bay be inspected?",
+    "answer": "every 260 flight hours",
+    "section": "Avionics Bay",
+    "component": "filter assembly",
+    "page": 12,
+    "spec_sentence": "The filter assembly requires inspection every 260 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the filter assembly rated at in the Fuel Assembly?",
+    "answer": "2525 psi",
+    "section": "Fuel Assembly",
+    "component": "filter assembly",
+    "page": 16,
+    "spec_sentence": "The filter assembly is rated at 2525 psi."
+  },
+  {
+    "question": "How often must the actuator in the Fuel Assembly be inspected?",
+    "answer": "every 50 flight hours",
+    "section": "Fuel Assembly",
+    "component": "actuator",
+    "page": 17,
+    "spec_sentence": "The actuator requires inspection every 50 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the actuator rated at in the Landing Gear?",
+    "answer": "2475 psi",
+    "section": "Landing Gear",
+    "component": "actuator",
+    "page": 21,
+    "spec_sentence": "The actuator is rated at 2475 psi."
+  },
+  {
+    "question": "How often must the sensor module in the Landing Gear be inspected?",
+    "answer": "every 150 flight hours",
+    "section": "Landing Gear",
+    "component": "sensor module",
+    "page": 22,
+    "spec_sentence": "The sensor module requires inspection every 150 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the sensor module rated at in the Power Distribution?",
+    "answer": "1825 psi",
+    "section": "Power Distribution",
+    "component": "sensor module",
+    "page": 26,
+    "spec_sentence": "The sensor module is rated at 1825 psi."
+  },
+  {
+    "question": "How often must the pressure relief valve in the Power Distribution be inspected?",
+    "answer": "every 410 flight hours",
+    "section": "Power Distribution",
+    "component": "pressure relief valve",
+    "page": 27,
+    "spec_sentence": "The pressure relief valve requires inspection every 410 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the pressure relief valve rated at in the Navigation Module?",
+    "answer": "3650 psi",
+    "section": "Navigation Module",
+    "component": "pressure relief valve",
+    "page": 31,
+    "spec_sentence": "The pressure relief valve is rated at 3650 psi."
+  },
+  {
+    "question": "How often must the coolant pump in the Navigation Module be inspected?",
+    "answer": "every 320 flight hours",
+    "section": "Navigation Module",
+    "component": "coolant pump",
+    "page": 32,
+    "spec_sentence": "The coolant pump requires inspection every 320 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the coolant pump rated at in the Communication Array?",
+    "answer": "2900 psi",
+    "section": "Communication Array",
+    "component": "coolant pump",
+    "page": 36,
+    "spec_sentence": "The coolant pump is rated at 2900 psi."
+  },
+  {
+    "question": "How often must the check valve in the Communication Array be inspected?",
+    "answer": "every 320 flight hours",
+    "section": "Communication Array",
+    "component": "check valve",
+    "page": 37,
+    "spec_sentence": "The check valve requires inspection every 320 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the check valve rated at in the Thermal Control?",
+    "answer": "3425 psi",
+    "section": "Thermal Control",
+    "component": "check valve",
+    "page": 41,
+    "spec_sentence": "The check valve is rated at 3425 psi."
+  },
+  {
+    "question": "How often must the filter assembly in the Thermal Control be inspected?",
+    "answer": "every 440 flight hours",
+    "section": "Thermal Control",
+    "component": "filter assembly",
+    "page": 42,
+    "spec_sentence": "The filter assembly requires inspection every 440 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the filter assembly rated at in the Propulsion Core?",
+    "answer": "2850 psi",
+    "section": "Propulsion Core",
+    "component": "filter assembly",
+    "page": 46,
+    "spec_sentence": "The filter assembly is rated at 2850 psi."
+  },
+  {
+    "question": "How often must the actuator in the Propulsion Core be inspected?",
+    "answer": "every 100 flight hours",
+    "section": "Propulsion Core",
+    "component": "actuator",
+    "page": 47,
+    "spec_sentence": "The actuator requires inspection every 100 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the actuator rated at in the Sensor Suite?",
+    "answer": "3125 psi",
+    "section": "Sensor Suite",
+    "component": "actuator",
+    "page": 51,
+    "spec_sentence": "The actuator is rated at 3125 psi."
+  },
+  {
+    "question": "How often must the sensor module in the Sensor Suite be inspected?",
+    "answer": "every 350 flight hours",
+    "section": "Sensor Suite",
+    "component": "sensor module",
+    "page": 52,
+    "spec_sentence": "The sensor module requires inspection every 350 flight hours."
+  },
+  {
+    "question": "According to the manual, what is the sensor module rated at in the Structural Frame?",
+    "answer": "3825 psi",
+    "section": "Structural Frame",
+    "component": "sensor module",
+    "page": 56,
+    "spec_sentence": "The sensor module is rated at 3825 psi."
+  },
+  {
+    "question": "How often must the pressure relief valve in the Structural Frame be inspected?",
+    "answer": "every 500 flight hours",
+    "section": "Structural Frame",
+    "component": "pressure relief valve",
+    "page": 57,
+    "spec_sentence": "The pressure relief valve requires inspection every 500 flight hours."
+  }
+]
