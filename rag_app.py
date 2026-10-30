@@ -166,7 +166,7 @@ def chat_interface(user_message, history):
     global rag_chain
 
     if rag_chain is None:
-        yield "⚠️ Please upload and process a PDF document in the Control Panel first."
+        yield "⚠️ Please upload and process a PDF using the panel on the left first."
         return
 
     formatted_history = ""
@@ -187,35 +187,180 @@ def chat_interface(user_message, history):
 # ==========================================
 
 theme = gr.themes.Soft(
-    primary_hue="indigo",
-    secondary_hue="blue",
+    primary_hue="violet",
+    secondary_hue="indigo",
     neutral_hue="slate",
     font=[gr.themes.GoogleFont("Inter"), "sans-serif"],
 )
 
-with gr.Blocks(title="Doc-Mind", theme=theme) as interface:
+CUSTOM_CSS = """
+/* ---------- App shell ---------- */
+body, .gradio-container {
+    background: radial-gradient(1200px 600px at 80% -10%, rgba(124, 58, 237, 0.28), transparent 60%),
+                radial-gradient(900px 500px at -10% 110%, rgba(37, 99, 235, 0.22), transparent 55%),
+                #0a0e1a !important;
+}
+.gradio-container { max-width: 1280px !important; padding-bottom: 28px !important; }
+
+/* ---------- Hero header ---------- */
+#hero {
+    display: flex; align-items: center; gap: 18px;
+    padding: 26px 30px;
+    background: linear-gradient(120deg, rgba(124, 58, 237, 0.16), rgba(37, 99, 235, 0.12));
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(2, 6, 23, 0.55), inset 0 1px 0 rgba(255,255,255,0.06);
+    backdrop-filter: blur(6px);
+    margin-bottom: 20px;
+}
+#hero .logo {
+    width: 58px; height: 58px; flex: 0 0 58px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
+}
+#hero h1 {
+    margin: 0; font-size: 2.1em; font-weight: 800; letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #e9d5ff, #93c5fd);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+#hero p { margin: 4px 0 0 0; color: #94a3b8; font-size: 0.98em; }
+#hero .badges { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+#hero .badge {
+    padding: 5px 12px; font-size: 0.72em; font-weight: 600; letter-spacing: 0.4px;
+    color: #c4b5fd; background: rgba(124, 58, 237, 0.14);
+    border: 1px solid rgba(167, 139, 250, 0.35); border-radius: 999px;
+    white-space: nowrap;
+}
+
+/* ---------- Panels & sections ---------- */
+#control-panel {
+    background: rgba(15, 23, 42, 0.72) !important;
+    border: 1px solid rgba(148, 163, 184, 0.16) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 32px rgba(2, 6, 23, 0.45);
+}
+.step-label {
+    display: flex; align-items: center; gap: 10px;
+    margin: 18px 4px 6px 4px; color: #e2e8f0 !important;
+    font-weight: 700; font-size: 0.95em;
+}
+.step-num {
+    width: 24px; height: 24px; flex: 0 0 24px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    color: #fff; border-radius: 8px; font-size: 0.78em; font-weight: 700;
+}
+.step-hint { margin: 0 4px 10px 38px; color: #64748b !important; font-size: 0.82em; }
+
+/* ---------- Chat column ---------- */
+#chat-col {
+    background: rgba(15, 23, 42, 0.72) !important;
+    border: 1px solid rgba(148, 163, 184, 0.16) !important;
+    border-radius: 18px !important;
+    padding: 18px !important;
+    box-shadow: 0 12px 32px rgba(2, 6, 23, 0.45);
+}
+.chat-title {
+    margin: 2px 4px 12px 4px; color: #e2e8f0 !important;
+    font-weight: 700; font-size: 1.05em;
+}
+
+/* Chat bubbles */
+.message.user, .message-row.user-row .message {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5) !important;
+    color: #fff !important; border-radius: 16px 16px 4px 16px !important;
+    border: none !important;
+}
+.message.bot, .message-row.bot-row .message {
+    background: rgba(30, 41, 59, 0.9) !important;
+    border: 1px solid rgba(148, 163, 184, 0.18) !important;
+    border-radius: 16px 16px 16px 4px !important;
+}
+
+/* ---------- Primary button ---------- */
+#process-btn button, button.primary {
+    background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%) !important;
+    border: none !important; color: #fff !important; font-weight: 700 !important;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+#process-btn button:hover, button.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 26px rgba(124, 58, 237, 0.55);
+}
+
+/* ---------- Field labels (plain, no pill background) ---------- */
+label.float, span[class*="block-label"], .gradio-container .block-label {
+    background: transparent !important;
+    color: #94a3b8 !important;
+    border: none !important; box-shadow: none !important;
+    font-weight: 600 !important; text-transform: none !important;
+}
+
+/* ---------- Misc ---------- */
+#footer-note { text-align: center; color: #475569; font-size: 0.78em; margin-top: 18px; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.3); border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+"""
+
+# Force dark mode so the custom shell always renders as designed.
+dark_mode_js = """
+function forceDark() {
+    const url = new URL(window.location);
+    if (url.searchParams.get('__theme') !== 'dark') {
+        url.searchParams.set('__theme', 'dark');
+        window.location.href = url.href;
+    }
+}
+"""
+
+# Gradio 6 moved theme/css/js from Blocks() to launch(); keep 4/5 compatibility.
+_GRADIO_MAJOR = int(gr.__version__.split(".")[0])
+_blocks_kwargs = {} if _GRADIO_MAJOR >= 6 else {"theme": theme, "css": CUSTOM_CSS, "js": dark_mode_js}
+_launch_kwargs = {"theme": theme, "css": CUSTOM_CSS, "js": dark_mode_js} if _GRADIO_MAJOR >= 6 else {}
+
+with gr.Blocks(title="Doc-Mind", **_blocks_kwargs) as interface:
 
     gr.HTML("""
-        <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%); color: white; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <h1 style="margin: 0; font-size: 2.5em; font-weight: 700; letter-spacing: -1px;">📚 Doc-Mind</h1>
-            <p style="margin: 8px 0 0 0; font-size: 1.1em; opacity: 0.9;">RAG for long PDFs, with measured retrieval</p>
+        <div id="hero">
+            <div class="logo">📚</div>
+            <div>
+                <h1>Doc-Mind</h1>
+                <p>Chat with long PDFs - RAG with measured retrieval, running locally on your machine</p>
+            </div>
+            <div class="badges">
+                <span class="badge">MISTRAL 7B</span>
+                <span class="badge">FAISS</span>
+                <span class="badge">100% LOCAL</span>
+            </div>
         </div>
     """)
 
     with gr.Row():
-        with gr.Column(scale=3, variant="panel"):
-            gr.Markdown("### 📂 1. Knowledge Base")
-            gr.Markdown("Upload a document to inject it into the AI's memory.")
+        with gr.Column(scale=3, elem_id="control-panel"):
+            gr.HTML('<div class="step-label"><span class="step-num">1</span>Upload document</div>'
+                    '<p class="step-hint">Drop a PDF to load it into the knowledge base.</p>')
 
-            file_input = gr.File(label="Upload PDF", file_types=[".pdf"])
+            file_input = gr.File(label="PDF file", file_types=[".pdf"])
+
+            gr.HTML('<div class="step-label"><span class="step-num">2</span>Retrieval options</div>'
+                    '<p class="step-hint">How chunks get context before embedding.</p>')
             context_toggle = gr.Checkbox(
                 label="Context-enriched chunks (recommended - see EVALUATION.md)", value=True)
             summary_toggle = gr.Checkbox(
                 label="LLM running summary (slower ingest, helps on very long docs)", value=False)
-            process_btn = gr.Button("🚀 Initialize Pipeline", variant="primary", size="lg")
 
-            gr.Markdown("### 📊 2. System Logs")
-            status_output = gr.Textbox(label="Status", interactive=False, lines=2)
+            gr.HTML('<div class="step-label"><span class="step-num">3</span>Initialize</div>')
+            process_btn = gr.Button("🚀  Build Knowledge Base", variant="primary",
+                                    size="lg", elem_id="process-btn")
+
+            gr.HTML('<div class="step-label">📡 System status</div>')
+            status_output = gr.Textbox(show_label=False, interactive=False, lines=2,
+                                       placeholder="Pipeline status will appear here...")
 
             with gr.Accordion("⚙️ Architecture Details", open=False):
                 gr.Markdown("""
@@ -228,16 +373,20 @@ with gr.Blocks(title="Doc-Mind", theme=theme) as interface:
                 - **Evals:** `python eval_rag.py run` (see EVALUATION.md)
                 """)
 
-        with gr.Column(scale=7):
+        with gr.Column(scale=7, elem_id="chat-col"):
+            gr.HTML('<div class="chat-title">💬 Chat with your document</div>')
             chat = gr.ChatInterface(
                 fn=chat_interface,
-                chatbot=gr.Chatbot(height=550, show_label=False),
-                textbox=gr.Textbox(placeholder="Ask a question about your document...", container=False, scale=7),
+                chatbot=gr.Chatbot(height=560, show_label=False),
+                textbox=gr.Textbox(placeholder="Ask a question about your document...",
+                                   container=False, scale=7),
             )
+
+    gr.HTML('<div id="footer-note">Doc-Mind runs entirely on localhost - your documents never leave this machine.</div>')
 
     process_btn.click(fn=process_document,
                       inputs=[file_input, context_toggle, summary_toggle],
                       outputs=status_output)
 
 if __name__ == "__main__":
-    interface.launch()
+    interface.launch(**_launch_kwargs)
