@@ -1,6 +1,6 @@
 # 📚 Doc-Mind: RAG for long PDFs, with measured retrieval
 
-![Doc-Mind Gradio UI screenshot](1-cloud-browser-20261030-145047-3c0291d2.png)
+![Doc-Mind Gradio UI screenshot](screenshots/1-ui.png)
 
 *The redesigned Doc-Mind interface.*
 
