@@ -13,6 +13,20 @@ fails, then fixed it." The measurements are below; the harness that produced
 them is in `eval_rag.py`, and the full write-up is in
 [DocMind_Report.pdf](DocMind_Report.pdf).
 
+
+![Doc-Mind Gradio UI screenshot](screenshots/app-ui.png)
+
+*The redesigned Doc-Mind interface.*
+
+A locally-hosted Retrieval-Augmented Generation app for chatting with long PDF
+documents. 100% local: Mistral-7B via Ollama, `all-MiniLM-L6-v2` embeddings,
+FAISS. Built with LangChain LCEL and Gradio.
+
+This repo is less "I built a RAG app" and more "I measured where my RAG app
+fails, then fixed it." The measurements are below; the harness that produced
+them is in `eval_rag.py`, and the full write-up is in
+[DocMind_Report.pdf](DocMind_Report.pdf).
+
 ## The problem: context rot on long documents
 
 Chunk a 60-page manual and a sentence like *"The pressure relief valve is
