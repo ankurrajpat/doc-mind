@@ -1,5 +1,9 @@
 # 📚 Doc-Mind: RAG for long PDFs, with measured retrieval
 
+![Doc-Mind Gradio UI screenshot](1-cloud-browser-20261030-145047-3c0291d2.png)
+
+*The redesigned Doc-Mind interface.*
+
 A locally-hosted Retrieval-Augmented Generation app for chatting with long PDF
 documents. 100% local: Mistral-7B via Ollama, `all-MiniLM-L6-v2` embeddings,
 FAISS. Built with LangChain LCEL and Gradio.
